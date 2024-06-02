@@ -34,7 +34,10 @@ struct ListView: View {
                         NavigationLink("", value: contact)
                     }
                     .navigationDestination(for: Contact.self) { contact in
-                        Text("Hello")
+                        ContactDetailView(contactName: contact.name,
+                                          contactSurname: contact.surname,
+                                          contactPic: contact.pic,
+                                          contactPhoneNumber: contact.phoneNumber)
                     }
                 }
                 .onDelete(perform: removeItems)

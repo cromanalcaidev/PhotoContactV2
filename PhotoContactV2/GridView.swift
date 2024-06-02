@@ -35,7 +35,10 @@ struct GridView: View {
                     LazyVGrid(columns: columns) {
                             ForEach(contacts.contactList.sorted()) { contact in
                                 NavigationLink {
-                                    AddContactView(contacts: contacts)
+                                    ContactDetailView(contactName: contact.name,
+                                                      contactSurname: contact.surname,
+                                                      contactPic: contact.pic,
+                                                      contactPhoneNumber: contact.phoneNumber)
                                 } label: {
                                     VStack {
                                         if let imageData = contact.pic,
