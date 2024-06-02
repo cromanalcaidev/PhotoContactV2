@@ -15,6 +15,8 @@
 		7C5126212C0B949A0012BEBA /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5126202C0B949A0012BEBA /* AddContactView.swift */; };
 		7C5126232C0B94B80012BEBA /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5126222C0B94B80012BEBA /* Contact.swift */; };
 		7C5126252C0B94C30012BEBA /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5126242C0B94C30012BEBA /* Contacts.swift */; };
+		7CF80F342C0C7AE200D68070 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF80F332C0C7AE200D68070 /* ListView.swift */; };
+		7CF80F362C0CB0CE00D68070 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF80F352C0CB0CE00D68070 /* ExtensionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		7C5126202C0B949A0012BEBA /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
 		7C5126222C0B94B80012BEBA /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		7C5126242C0B94C30012BEBA /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		7CF80F332C0C7AE200D68070 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		7CF80F352C0CB0CE00D68070 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 			children = (
 				7C5126122C0B94760012BEBA /* PhotoContactV2App.swift */,
 				7C5126142C0B94760012BEBA /* ContentView.swift */,
+				7CF80F332C0C7AE200D68070 /* ListView.swift */,
 				7C17FB492C0BC1B9009A27D8 /* GridView.swift */,
+				7CF80F352C0CB0CE00D68070 /* ExtensionView.swift */,
 				7C5126202C0B949A0012BEBA /* AddContactView.swift */,
 				7C5126222C0B94B80012BEBA /* Contact.swift */,
 				7C5126242C0B94C30012BEBA /* Contacts.swift */,
@@ -152,8 +158,10 @@
 				7C5126232C0B94B80012BEBA /* Contact.swift in Sources */,
 				7C5126212C0B949A0012BEBA /* AddContactView.swift in Sources */,
 				7C5126152C0B94760012BEBA /* ContentView.swift in Sources */,
+				7CF80F342C0C7AE200D68070 /* ListView.swift in Sources */,
 				7C17FB4A2C0BC1B9009A27D8 /* GridView.swift in Sources */,
 				7C5126132C0B94760012BEBA /* PhotoContactV2App.swift in Sources */,
+				7CF80F362C0CB0CE00D68070 /* ExtensionView.swift in Sources */,
 				7C5126252C0B94C30012BEBA /* Contacts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

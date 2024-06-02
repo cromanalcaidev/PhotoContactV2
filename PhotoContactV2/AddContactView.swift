@@ -14,6 +14,7 @@ struct AddContactView: View {
     @State private var contactName = ""
     @State private var contactSurname = ""
     @State var phoneNumber = ""
+    @State private var showAlert = false
     
     @State var pickerItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
@@ -51,6 +52,9 @@ struct AddContactView: View {
                             }
                             .padding(.bottom, 20)
                         }
+                        .alert("Please add the contact details", isPresented: $showAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
                         
                     } else {
                         Label("Add picture", systemImage: "photo")
@@ -77,7 +81,15 @@ struct AddContactView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save contact", systemImage: "square.and.arrow.down") {
-                        saveContact()
+                        if contactName.isEmpty {
+                            showAlert = true
+                        } else if contactSurname.isEmpty {
+                            showAlert = true
+                        } else if phoneNumber.isEmpty {
+                            showAlert = true
+                        } else {
+                            saveContact()
+                        }
                     }
                 }
             }
