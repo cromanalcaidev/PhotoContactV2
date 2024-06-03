@@ -38,7 +38,7 @@ struct GridView: View {
                                     ContactDetailView(contactName: contact.name,
                                                       contactSurname: contact.surname,
                                                       contactPic: contact.pic,
-                                                      contactPhoneNumber: contact.phoneNumber)
+                                                      contactPhoneNumber: contact.phoneNumber, latitude: contact.latitude, longitude: contact.longitude)
                                 } label: {
                                     VStack {
                                         if let imageData = contact.pic,
@@ -52,14 +52,14 @@ struct GridView: View {
                                         }
                                         
                                         VStack(alignment: .center) {
-                                            Text("\(contact.name)\n \(contact.surname)")
+                                            Text("\(contact.name) \(contact.surname)")
                                                 .font(.headline)
                                                 .fontWeight(.bold)
-                                                .foregroundStyle(.black)
+                                                .foregroundStyle(.white)
                                             
                                             Text("\(contact.phoneNumber)")
                                                 .font(.caption)
-                                                .foregroundStyle(.black)
+                                                .foregroundStyle(.white)
                                         }
                                         .padding(.vertical)
                                         .frame(maxWidth: .infinity)
@@ -70,14 +70,13 @@ struct GridView: View {
                                         RoundedRectangle (cornerRadius: 10)
                                             .stroke(.secondary)
                                     )
-                                    .foregroundStyle(.white)
                                     
                                 }
                             }
                             .padding([.horizontal, .bottom])
                     }
                     .sheet(isPresented: $enableAddContact) {
-                        // more code to come
+                        AddContactView(contacts: contacts)
                     }
                 }
                 .navigationTitle("Photo Contact")
@@ -86,7 +85,6 @@ struct GridView: View {
                     ToolbarItem {
                         Button() {
                             enableAddContact.toggle()
-    //                        contacts.contactList = []
                         } label: {
                             Image(systemName: "plus.circle.fill")
                                 .foregroundColor(.white)
@@ -96,7 +94,6 @@ struct GridView: View {
                     ToolbarItem(placement: .topBarLeading) {
                         Button() {
                             withAnimation {
-//                                contacts.contactList = []
                                 isGrid = false
                             }
                         } label: {
@@ -107,9 +104,6 @@ struct GridView: View {
                 }
             }
         }
-    }
-    func removeItems(at offsets: IndexSet) {
-        contacts.contactList.remove(atOffsets: offsets)
     }
 }
 

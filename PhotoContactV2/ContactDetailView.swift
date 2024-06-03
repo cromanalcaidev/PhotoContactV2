@@ -15,6 +15,19 @@ struct ContactDetailView: View {
     var contactSurname: String
     var contactPic: Data?
     var contactPhoneNumber: Int
+    var latitude: Double
+    var longitude: Double
+    
+    var startPosition: MapCameraPosition {
+        let position = MapCameraPosition.region(
+            MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
+            )
+        )
+        
+        return position
+    }
     
     var body: some View {
         ZStack {
@@ -70,7 +83,7 @@ struct ContactDetailView: View {
                 
                 VStack {
                     Section("You met them here:") {
-                        Map(interactionModes: [])
+                        Map(initialPosition: startPosition, interactionModes: [])
                             .padding(.horizontal, 20)
                         .mapStyle(.standard(elevation: .realistic))
                     }
@@ -88,5 +101,5 @@ struct ContactDetailView: View {
 }
 
 #Preview {
-    ContactDetailView(contactName: "Pepe", contactSurname: "Pindangas", contactPhoneNumber: 1234567)
+    ContactDetailView(contactName: "Pepe", contactSurname: "Pindangas", contactPhoneNumber: 1234567, latitude: 1.11, longitude: -1.11)
 }

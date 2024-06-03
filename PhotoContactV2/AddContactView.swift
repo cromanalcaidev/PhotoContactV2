@@ -19,6 +19,13 @@ struct AddContactView: View {
     @State var pickerItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
     
+    @State private var isCircle = false
+    
+    let locationFetcher = LocationFetcher()
+    
+    @State private var latitude: Double = 0
+    @State private var longitude: Double = 0
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -31,31 +38,62 @@ struct AddContactView: View {
                     if let imageData = selectedImageData,
                        let uiImage = UIImage(data: imageData) {
                         Section {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 300)
-                                .clipShape(.circle)
-                                .padding(.vertical, 20)
+                            if isCircle {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: 300, maxHeight: 300)
+                                    .clipShape(.circle)
+                                    .padding(.vertical, 20)
+                            } else {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: 300, maxHeight: 300)
+                                    .clipShape(.circle)
+                                    .opacity(0.3)
+                                    .padding(.vertical, 20)
+                            }
                         }
                         
                         Section {
                             
-                            Button(role: .destructive) {
-                                withAnimation {
-                                    pickerItem = nil
-                                    selectedImageData = nil
+                            HStack {
+                                Button(role: .destructive) {
+                                    withAnimation {
+                                        pickerItem = nil
+                                        selectedImageData = nil
+                                    }
+                                } label: {
+                                    Label("Remove image", systemImage: "xmark")
+                                        .foregroundStyle(.red)
                                 }
-                            } label: {
-                                Label("Remove image", systemImage: "xmark")
-                                    .foregroundStyle(.red)
+                                .padding(.leading, 10)
+                            
+                                Spacer()
+                                
+                                Button(role: .cancel) {
+                                    isCircle.toggle()
+                                    locationFetcher.start()
+                                    
+                                    if let location = locationFetcher.lastKnownLocation {
+                                        latitude = location.latitude
+                                        longitude = location.longitude
+                                    }
+                                    
+                                    print(latitude)
+                                    print(longitude)
+                                } label: {
+                                    Label("Save image", systemImage: "photo.badge.checkmark")
+                                        .foregroundStyle(.blue)
+                                }
+                                .padding(.trailing, 10)
                             }
                             .padding(.bottom, 20)
                         }
                         .alert("Please add the contact details", isPresented: $showAlert) {
                             Button("OK", role: .cancel) { }
                         }
-                        
                     } else {
                         Label("Add picture", systemImage: "photo")
                     }
@@ -96,7 +134,7 @@ struct AddContactView: View {
         }
     }
     func saveContact() {
-        let newContact = Contact(id: UUID(), name: contactName, surname: contactSurname, pic: selectedImageData, phoneNumber: Int(phoneNumber) ?? 00000)
+        let newContact = Contact(id: UUID(), name: contactName, surname: contactSurname, pic: selectedImageData, phoneNumber: Int(phoneNumber) ?? 00000, latitude: latitude, longitude: longitude)
         contacts.contactList.append(newContact)
         dismiss()
     }

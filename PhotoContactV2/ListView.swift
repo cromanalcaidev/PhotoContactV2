@@ -37,7 +37,7 @@ struct ListView: View {
                         ContactDetailView(contactName: contact.name,
                                           contactSurname: contact.surname,
                                           contactPic: contact.pic,
-                                          contactPhoneNumber: contact.phoneNumber)
+                                          contactPhoneNumber: contact.phoneNumber, latitude: contact.latitude, longitude: contact.longitude)
                     }
                 }
                 .onDelete(perform: removeItems)
